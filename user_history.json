@@ -111,6 +111,62 @@
             {
                 "role": "bot",
                 "text": "2 + 2 = 4\n"
+            },
+            {
+                "role": "user",
+                "text": "2*2"
+            },
+            {
+                "role": "bot",
+                "text": "4\n"
+            },
+            {
+                "role": "user",
+                "text": "2+2"
+            },
+            {
+                "role": "bot",
+                "text": "4\n"
+            },
+            {
+                "role": "user",
+                "text": "pode me dizer o que é uma fração?"
+            },
+            {
+                "role": "bot",
+                "text": "Uma fração representa uma parte de um todo.  Ela é escrita como dois números separados por uma linha, chamada de linha de fração. O número de cima, chamado de **numerador**, indica quantas partes você tem. O número de baixo, chamado de **denominador**, indica quantas partes iguais o todo foi dividido.\n\nPor exemplo, na fração 3/4 (lê-se \"três quartos\"), o numerador é 3 e o denominador é 4. Isso significa que o todo foi dividido em 4 partes iguais e você tem 3 dessas partes.\n"
+            },
+            {
+                "role": "user",
+                "text": "e o que é verbo em português?"
+            },
+            {
+                "role": "bot",
+                "text": "Desculpe, só posso ajudar com matemática do ensino fundamental.\n"
+            },
+            {
+                "role": "user",
+                "text": "O que é limite?"
+            },
+            {
+                "role": "bot",
+                "text": "Desculpe, só posso ajudar com matemática do ensino fundamental.\n"
+            },
+            {
+                "role": "user",
+                "text": "O que é potência?"
+            },
+            {
+                "role": "bot",
+                "text": "Potência é uma forma abreviada de escrever uma multiplicação de fatores iguais.  Ela é composta por uma base e um expoente.\n\n* **Base:** O número que será multiplicado por ele mesmo.\n* **Expoente:** O número que indica quantas vezes a base será multiplicada por si mesma.\n\nPor exemplo, em 2³,  o 2 é a base e o 3 é o expoente.  Isso significa 2 x 2 x 2 = 8.  Portanto, 2³ = 8.\n"
+            },
+            {
+                "role": "user",
+                "text": "o que é equação do segundo grau?"
+            },
+            {
+                "role": "bot",
+                "text": "Uma equação do segundo grau é uma equação polinomial de grau 2, que pode ser escrita na forma geral:\n\nax² + bx + c = 0\n\nonde:\n\n* **a**, **b**, e **c** são números reais, sendo **a** diferente de zero (se a fosse zero, não seria uma equação do segundo grau, pois o termo x² desapareceria).\n* **x** é a variável (o que queremos encontrar).\n\nResolver uma equação do segundo grau significa encontrar os valores de **x** que tornam a equação verdadeira.  Existem diferentes métodos para resolver equações do segundo grau, como a fórmula de Bhaskara e a fatoração.\n"
             }
         ]
     },
@@ -182,6 +238,30 @@
             {
                 "role": "bot",
                 "text": "Subtração é uma das quatro operações básicas da aritmética, sendo o inverso da adição.  Ela representa a remoção de um número (o subtraendo) de outro número (o minuendo), resultando em um terceiro número (a diferença).\n\n**Conceitos-chave:**\n\n* **Minuendo:** O número do qual estamos subtraindo.  É o número maior na operação.\n* **Subtraendo:** O número que estamos subtraindo do minuendo.\n* **Diferença:** O resultado da subtração.\n\n**Representação:**\n\nA subtração é geralmente representada pelos símbolos  \"−\" ou \"–\".  Por exemplo:\n\n* 10 − 5 = 5  (Dez menos cinco é igual a cinco)\n* 25 – 12 = 13 (Vinte e cinco menos doze é igual a treze)\n\n**Métodos de subtração:**\n\nExistem diversos métodos para realizar uma subtração, incluindo:\n\n* **Subtração por decomposição:**  Decompor os números em unidades, dezenas, centenas, etc., e subtrair cada posição separadamente.  Exemplo: 45 - 23 = (40 + 5) - (20 + 3) = (40 - 20) + (5 - 3) = 20 + 2 = 22.\n* **Subtração por empréstimo (ou reagrupamento):**  Quando um dígito do minuendo é menor que o dígito correspondente do subtraendo, \"emprestamos\" uma unidade da posição seguinte.  Exemplo: 32 - 18. Como 2 é menor que 8, \"emprestamos\" uma dezena de 30, tornando o 2 em 12 e o 3 em 2. Então, 12 - 8 = 4 e 2 - 1 = 1.  O resultado é 14.\n* **Subtração na reta numérica:**  Representar a subtração visualmente na reta numérica, movendo-se para a esquerda a partir do minuendo pelo número de unidades do subtraendo.\n\n**Propriedades da Subtração:**\n\n* **Não comutativa:** A ordem dos números importa. 5 - 3 ≠ 3 - 5.\n* **Não associativa:**  (a - b) - c ≠ a - (b - c).\n* **Elemento neutro:**  Subtrair zero de um número não altera o número (a - 0 = a).\n* **Subtração com o mesmo número:** Subtrair um número de si mesmo resulta em zero (a - a = 0).\n\nA subtração é fundamental em muitos contextos, desde cálculos simples do dia a dia até problemas complexos em matemática, física e outras ciências.  Compreender seus conceitos e métodos é essencial para o desenvolvimento de habilidades matemáticas.\n"
+            },
+            {
+                "role": "user",
+                "text": "quero saber o que 2+2?"
+            },
+            {
+                "role": "bot",
+                "text": "2 + 2 = 4\n"
+            },
+            {
+                "role": "user",
+                "text": "e como eu conjungo um verbo"
+            },
+            {
+                "role": "bot",
+                "text": "Desculpe, só posso ajudar com matemática do ensino fundamental.\n"
+            },
+            {
+                "role": "user",
+                "text": "vc me ajuda com o que então"
+            },
+            {
+                "role": "bot",
+                "text": "Posso te ajudar com diversos assuntos de matemática do ensino fundamental, como:\n\n* **Aritmética:** Adição, subtração, multiplicação, divisão, frações, decimais, porcentagem, razões e proporções, números inteiros, operações com números inteiros, MMC e MDC.\n* **Geometria:** Formas geométricas (quadrados, retângulos, triângulos, círculos, etc.), perímetro, área, volume, ângulos, sólidos geométricos.\n* **Álgebra:** Expressões algébricas, equações simples, inequações.\n* **Medidas:** Unidades de medida (comprimento, massa, volume, tempo, etc.), conversão de unidades.\n* **Problemas matemáticos:** Resolução de problemas envolvendo os conceitos acima.\n\n\nPara te ajudar melhor, por favor, me diga em qual assunto específico você precisa de ajuda e qual o nível de ensino (1º ao 9º ano).  Quanto mais detalhes você fornecer, melhor poderei te auxiliar.\n"
             }
         ]
     },
@@ -316,5 +396,146 @@
                 "text": "Oi!  How can I help you today?\n"
             }
         ]
+    },
+    "😂": {
+        "nome": "Júlia",
+        "turma": "6",
+        "professor": "G",
+        "interacoes": [
+            {
+                "role": "user",
+                "text": "Iaus"
+            },
+            {
+                "role": "bot",
+                "text": "Desculpe, só posso ajudar com matemática do ensino fundamental.\n"
+            },
+            {
+                "role": "user",
+                "text": "Qual é a raiz quadrada de 100"
+            },
+            {
+                "role": "bot",
+                "text": "A raiz quadrada de 100 é 10.\n"
+            },
+            {
+                "role": "user",
+                "text": "Ok"
+            },
+            {
+                "role": "bot",
+                "text": "Ok. Estou pronto para te ajudar com suas dúvidas de matemática do ensino fundamental!  Pergunte o que precisar.\n"
+            },
+            {
+                "role": "user",
+                "text": "20+1"
+            },
+            {
+                "role": "bot",
+                "text": "21\n"
+            },
+            {
+                "role": "user",
+                "text": "Me fale sobre frações parciais"
+            },
+            {
+                "role": "bot",
+                "text": "Desculpe, só posso ajudar com matemática do ensino fundamental.\n"
+            },
+            {
+                "role": "user",
+                "text": "Me explique frações"
+            },
+            {
+                "role": "bot",
+                "text": "Imagine que você tem uma pizza.  Uma fração representa uma parte dessa pizza.\n\nUma fração é escrita como dois números separados por uma linha, chamada de linha de fração.  O número de cima, chamado de **numerador**, indica quantas partes *você tem*. O número de baixo, chamado de **denominador**, indica quantas partes a pizza foi dividida *no total*.\n\nPor exemplo:\n\n* **1/2 (um meio):** A pizza foi dividida em duas partes iguais, e você tem uma dessas partes.\n* **3/4 (três quartos):** A pizza foi dividida em quatro partes iguais, e você tem três dessas partes.\n* **2/5 (dois quintos):** A pizza foi dividida em cinco partes iguais, e você tem duas dessas partes.\n\n**Conceitos importantes:**\n\n* **Frações equivalentes:**  São frações que representam a mesma quantidade, mesmo tendo numeradores e denominadores diferentes. Por exemplo, 1/2 é equivalente a 2/4, 3/6, 4/8 e assim por diante.  Multiplicar ou dividir o numerador e o denominador pelo mesmo número (diferente de zero) resulta em uma fração equivalente.\n\n* **Frações próprias:** O numerador é menor que o denominador (ex: 1/2, 3/4).  Representam uma quantidade menor que um inteiro.\n\n* **Frações impróprias:** O numerador é maior ou igual ao denominador (ex: 5/4, 6/3). Representam uma quantidade maior ou igual a um inteiro.  Podem ser convertidas em números mistos.\n\n* **Números mistos:** São números que combinam um número inteiro com uma fração (ex: 1 1/2, 2 3/4).  Representam uma quantidade maior que um inteiro. Uma fração imprópria pode ser convertida em um número misto dividindo o numerador pelo denominador. O quociente é o inteiro, e o resto é o numerador da fração que terá o mesmo denominador da fração original.\n\n\n* **Simplificação de frações:**  Encontrar a fração equivalente mais simples, dividindo o numerador e o denominador pelo seu maior divisor comum (MDC). Por exemplo, 6/8 simplificado é 3/4 (dividindo ambos por 2).\n\n* **Operações com frações:** Você pode somar, subtrair, multiplicar e dividir frações. As regras para cada operação são diferentes e exigem um certo nível de entendimento dos conceitos acima.\n\n\nPratique bastante com exemplos diferentes para entender bem as frações!  Comece com frações simples e vá aumentando a complexidade gradualmente. Se tiver alguma dúvida sobre um aspecto específico, como adição ou subtração de frações, por exemplo,  pergunte novamente.\n"
+            },
+            {
+                "role": "user",
+                "text": "Eq do segundo grau"
+            },
+            {
+                "role": "bot",
+                "text": "Equações do segundo grau são equações que podem ser escritas na forma  ax² + bx + c = 0, onde 'a', 'b' e 'c' são números reais e 'a' é diferente de zero.  Para resolvê-las, podemos usar diferentes métodos, como:\n\n* **Fatoração:**  Este método consiste em encontrar dois números que, multiplicados, resultem em 'ac' e, somados, resultem em 'b'.  Em seguida, reescrevemos a equação na forma fatorada e encontramos os valores de 'x' que a tornam igual a zero.  Exemplo: x² + 5x + 6 = 0  fatora para (x+2)(x+3) = 0, logo x = -2 ou x = -3.  Nem todas as equações do segundo grau podem ser fatoradas facilmente.\n\n* **Fórmula de Bhaskara (ou Fórmula Quadrática):** Esta fórmula fornece a solução para qualquer equação do segundo grau:\n\n   x = [-b ± √(b² - 4ac)] / 2a\n\n   Onde o símbolo ± indica que existem duas soluções possíveis: uma usando a adição e outra usando a subtração.  O termo b² - 4ac é chamado de discriminante (Δ).  O valor do discriminante indica a natureza das raízes:\n\n    * Δ > 0: Duas raízes reais e distintas.\n    * Δ = 0: Duas raízes reais e iguais (uma raiz dupla).\n    * Δ < 0: Duas raízes complexas (não reais).  No ensino fundamental, geralmente não se trabalha com raízes complexas.\n\n* **Completando o quadrado:** Este método envolve manipular a equação para transformá-la em um quadrado perfeito, facilitando a resolução.  É um método menos usado no ensino fundamental, mas é importante para entender a dedução da fórmula de Bhaskara.\n\nQualquer dúvida específica sobre equações do segundo grau, como resolver um exercício específico ou entender um conceito particular, pode me perguntar.\n"
+            },
+            {
+                "role": "user",
+                "text": "10+2029"
+            },
+            {
+                "role": "bot",
+                "text": "2039\n"
+            },
+            {
+                "role": "user",
+                "text": "Jsu"
+            },
+            {
+                "role": "bot",
+                "text": "Desculpe, só posso ajudar com matemática do ensino fundamental.\n"
+            },
+            {
+                "role": "user",
+                "text": "Hj vai chover?"
+            },
+            {
+                "role": "bot",
+                "text": "Desculpe, só posso ajudar com matemática do ensino fundamental.\n"
+            },
+            {
+                "role": "user",
+                "text": "Some 10 com 2"
+            },
+            {
+                "role": "bot",
+                "text": "10 + 2 = 12\n"
+            },
+            {
+                "role": "user",
+                "text": "10*2"
+            },
+            {
+                "role": "bot",
+                "text": "20\n"
+            },
+            {
+                "role": "user",
+                "text": "Me explique como resolver um derivada"
+            },
+            {
+                "role": "bot",
+                "text": "Desculpe, só posso ajudar com matemática do ensino fundamental.\n"
+            },
+            {
+                "role": "user",
+                "text": "Ok querido"
+            },
+            {
+                "role": "bot",
+                "text": "Desculpe, só posso ajudar com matemática do ensino fundamental.\n"
+            },
+            {
+                "role": "user",
+                "text": "Kkkkk"
+            },
+            {
+                "role": "bot",
+                "text": "Desculpe, só posso ajudar com matemática do ensino fundamental.\n"
+            },
+            {
+                "role": "user",
+                "text": "90-283"
+            },
+            {
+                "role": "bot",
+                "text": "90 - 283 = -193\n"
+            }
+        ]
+    },
+    "20230001507": {
+        "nome": "Anelma",
+        "turma": "IA",
+        "professor": "Felipe",
+        "interacoes": []
     }
 }
