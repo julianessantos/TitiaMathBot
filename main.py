@@ -56,6 +56,14 @@ load_history_from_file()
 # Dicionário para armazenar matrículas temporariamente durante o registro
 pending_registrations = {}
 
+# Contexto restrito para matemática do ensino fundamental
+MATH_CONTEXT = """
+Você é um tutor de matemática especializado no ensino fundamental (1º ao 9º ano).
+Responda apenas a perguntas relacionadas a matemática desse nível educacional.
+Se a pergunta não for relacionada a matemática ou estiver fora do escopo, responda:
+"Desculpe, só posso ajudar com matemática do ensino fundamental."
+"""
+
 # Primeiro passo: Solicita a matrícula ao usuário
 @bot.message_handler(commands=['start'])
 def request_matricula(message):
@@ -132,8 +140,8 @@ def respond_to_message(message):
         user_data["interacoes"].append({"role": "user", "text": message.text})
 
         try:
-            # Gera uma resposta com base no texto da mensagem recebida
-            response = model.generate_content(message.text)
+            # Envia o prompt com contexto para a IA
+            response = model.generate_content(MATH_CONTEXT + "\nUsuário: " + message.text + "\nIA:")
 
             # Adiciona a resposta ao histórico
             user_data["interacoes"].append({"role": "bot", "text": response.text})
