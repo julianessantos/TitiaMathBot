@@ -3,7 +3,6 @@ import os
 import json
 import google.generativeai as genai
 import telebot
-import time
 
 # Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
@@ -28,7 +27,7 @@ if not API_KEY_TELEGRAM:
     print("Erro: a chave TELEGRAMKEY não foi encontrada no arquivo .env")
 else:
     print("Chave do Telegram carregada com sucesso")
-    
+
 bot = telebot.TeleBot(API_KEY_TELEGRAM)
 
 # Histórico de usuários
@@ -51,126 +50,104 @@ def save_history_to_file():
     except Exception as e:
         print(f"Erro ao salvar o histórico: {e}")
 
-# Função para verificar se o ID já foi registrado
-def get_user_history(user_id):
-    global user_history
-    if user_id not in user_history:
-        return None  # Usuário não registrado
-    return user_history[user_id]  # Retorna o histórico do usuário
-
 # Carrega o histórico ao iniciar o bot
 load_history_from_file()
 
-# Define o comando de registro
-@bot.message_handler(commands=['registrar'])
-def register_user(message):
-    user_id = message.chat.id
+# Dicionário para armazenar matrículas temporariamente durante o registro
+pending_registrations = {}
 
-    # Verifica se o usuário já está registrado
-    if get_user_history(user_id):
-        bot.reply_to(message, "Você já está registrado!")
+# Primeiro passo: Solicita a matrícula ao usuário
+@bot.message_handler(commands=['start'])
+def request_matricula(message):
+    msg = bot.reply_to(message, "Olá! Para começar, por favor, digite sua matrícula:")
+    bot.register_next_step_handler(msg, verify_matricula)
+
+# Verifica se a matrícula existe no histórico
+def verify_matricula(message):
+    chat_id = message.chat.id
+    matricula = message.text.strip()
+
+    if matricula in user_history:
+        user_data = user_history[matricula]
+        bot.reply_to(message, f"Bem-vindo de volta, {user_data['nome']}! Como posso ajudá-lo hoje?")
+        
+        # ⚡ Armazena a matrícula corretamente para futuras interações
+        pending_registrations[chat_id] = matricula  
+    else:
+        bot.reply_to(message, "Matrícula não encontrada. Vamos fazer seu registro.")
+        pending_registrations[chat_id] = matricula  # Armazena a matrícula para continuar o registro
+        msg = bot.reply_to(message, "Por favor, digite seu nome:")
+        bot.register_next_step_handler(msg, process_name)
+
+# Processo de registro de novo usuário
+def process_name(message):
+    chat_id = message.chat.id
+    nome = message.text.strip()
+    matricula = pending_registrations.get(chat_id)
+
+    if not matricula:
+        bot.reply_to(message, "Erro ao recuperar a matrícula. Tente novamente usando /start.")
         return
 
-    # Solicita informações do usuário
-    msg = bot.reply_to(message, "Olá! Para começar, por favor, envie seu nome:")
-    bot.register_next_step_handler(msg, process_name)
+    user_history[matricula] = {"nome": nome, "turma": None, "professor": None, "interacoes": []}
+    
+    msg = bot.reply_to(message, f"Obrigado, {nome}! Agora, envie o nome da sua turma:")
+    bot.register_next_step_handler(msg, process_class, matricula)
 
-def process_name(message):
-    user_id = message.chat.id
-    user_name = message.text
+def process_class(message, matricula):
+    turma = message.text.strip()
+    user_history[matricula]["turma"] = turma
 
-    # Inicializa o histórico do usuário com as informações básicas
-    user_history[user_id] = {
-        "nome": user_name,
-        "turma": None,
-        "professor": None,
-        "interacoes": []
-    }
+    msg = bot.reply_to(message, f"Entendido! Agora, envie o nome do(a) professor(a):")
+    bot.register_next_step_handler(msg, process_teacher, matricula)
 
-    msg = bot.reply_to(message, "Obrigado, {0}! Agora, envie o nome da sua turma:".format(user_name))
-    bot.register_next_step_handler(msg, process_class)
+def process_teacher(message, matricula):
+    professor = message.text.strip()
+    user_history[matricula]["professor"] = professor
 
-def process_class(message):
-    user_id = message.chat.id
-    class_name = message.text
-
-    user_history[user_id]["turma"] = class_name
-
-    msg = bot.reply_to(message, "Entendido! Agora, envie o nome do(a) professor(a):")
-    bot.register_next_step_handler(msg, process_teacher)
-
-def process_teacher(message):
-    user_id = message.chat.id
-    teacher_name = message.text
-
-    user_history[user_id]["professor"] = teacher_name
-
-    bot.reply_to(message, "Registro completo! Bem-vindo(a), {0}!".format(user_history[user_id]["nome"]))
-
+    bot.reply_to(message, f"Registro completo! Bem-vindo(a), {user_history[matricula]['nome']}!")
+    
     # Salva o histórico após o registro
     save_history_to_file()
 
-# Função para gerar uma resposta padrão educativa
-def generate_generic_educational_response():
-    return (
-        "Parece que sua pergunta não está diretamente relacionada à matemática do ensino fundamental. "
-        "Aqui estão algumas coisas que você pode perguntar:\n"
-        "- Como resolver uma equação?\n"
-        "- O que é uma fração?\n"
-        "- Qual é a fórmula da área de um círculo?\n"
-        "Tente perguntar algo relacionado a números ou cálculos!"
-    )
-
-# Função para enviar respostas grandes em partes
-def send_large_message(bot, chat_id, text, chunk_size=4096):
-    for i in range(0, len(text), chunk_size):
-        bot.send_message(chat_id, text[i:i+chunk_size])
-        time.sleep(1)  # Para evitar problemas com muitas mensagens rápidas
-
-# Define o manipulador para mensagens de texto
+# Manipulador de mensagens para interação normal após o login
 @bot.message_handler(func=lambda message: True)
 def respond_to_message(message):
-    user_id = message.chat.id
-    user_text = message.text
+    chat_id = message.chat.id
 
-    # Verifica se o usuário está registrado
-    user_data = get_user_history(user_id)
-    if not user_data:
-        bot.reply_to(message, "Por favor, registre-se usando o comando /registrar antes de continuar.")
+    # Verifica se temos a matrícula salva para esse chat_id
+    if chat_id not in pending_registrations:
+        msg = bot.reply_to(message, "Antes de prosseguirmos, por favor, informe sua matrícula:")
+        bot.register_next_step_handler(msg, verify_matricula)
         return
 
-    # Adiciona a interação ao histórico
-    user_data["interacoes"].append({"role": "user", "text": user_text})
+    # Recupera a matrícula salva para esse usuário
+    matricula = pending_registrations[chat_id]
 
-    try:
-        # Gera uma resposta com base no texto da mensagem recebida
-        response = model.generate_content(user_text)
+    # ⚡ Verifica corretamente se a matrícula existe no histórico
+    if matricula in user_history:
+        user_data = user_history[matricula]
 
-        # Adiciona a resposta ao histórico
-        user_data["interacoes"].append({"role": "bot", "text": response.text})
+        # Adiciona a interação ao histórico
+        user_data["interacoes"].append({"role": "user", "text": message.text})
 
-        # Envia a resposta ao usuário, verificando se a resposta é grande
-        send_large_message(bot, user_id, response.text)
+        try:
+            # Gera uma resposta com base no texto da mensagem recebida
+            response = model.generate_content(message.text)
 
-    except Exception as e:
-        error_message = f"Erro ao gerar resposta: {e}"
-        print(error_message)
-        bot.reply_to(message, "Houve um problema ao processar sua solicitação. Por favor, tente novamente mais tarde.")
+            # Adiciona a resposta ao histórico
+            user_data["interacoes"].append({"role": "bot", "text": response.text})
 
-    # Salva o histórico após a interação
-    save_history_to_file()
+            # Envia a resposta ao usuário
+            bot.reply_to(message, response.text)
 
-    # Exemplo de log do histórico no terminal (opcional)
-    print(f"Histórico do usuário {user_id}: {user_data}")
+        except Exception as e:
+            bot.reply_to(message, "Houve um problema ao processar sua solicitação. Tente novamente mais tarde.")
 
-# Define o comando para exportar o histórico
-@bot.message_handler(commands=['exportar'])
-def export_history(message):
-    try:
+        # Salva o histórico após a interação
         save_history_to_file()
-        bot.reply_to(message, "Histórico exportado com sucesso para 'user_history.json'.")
-    except Exception as e:
-        bot.reply_to(message, f"Erro ao exportar o histórico: {e}")
+    else:
+        bot.reply_to(message, "Matrícula não reconhecida. Por favor, inicie novamente com /start.")
 
 # Inicia o bot
 bot.polling()
