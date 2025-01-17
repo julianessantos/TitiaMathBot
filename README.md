@@ -34,4 +34,3 @@ Foram realizados testes para verificar:
 - **Validação de contexto**: Respostas fora do escopo retornaram mensagens padrão.
 - **Funcionalidade**: O sistema demonstrou ser uma ferramenta prática e acessível para alunos do ensino fundamental.
 
----
