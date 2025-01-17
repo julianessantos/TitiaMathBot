@@ -1,1 +1,36 @@
-O uso de IA na educação tem se mostrado transformador, sendo amplamente aplicado na personalização do aprendizado e no aprimoramento dos métodos de ensino. Dessa forma, este  trabalho tem como objetivo implementar um sistema de tutoria para alunos do ensino fundamental, por meio de um chatbot (TItiaMath) , no Telegram para auxiliar no aprendizado de matemática. A implementação do chatbot utiliza um modelo de machine learning (ML) baseado em large language mode (LLM), com a IA Gemini 1.5 Flash. O modelo foi ajustado para restringir o contexto, garantindo respostas precisas para conteúdos de matemática no ensino fundamental. Considerando que o modelo utilizado já é pré-treinado, não foi necessário realizar novo treinamento. Além disso, a aplicação foi testada para avaliar sua assertividade nas respostas, incluindo a verificação de respostas fora do contexto. 
+# TitiaMath - Chatbot de Tutoria em Matemática
+
+## Descrição
+
+TitiaMath é um sistema de tutoria inteligente desenvolvido para auxiliar alunos do ensino fundamental no aprendizado de matemática. O projeto utiliza um chatbot baseado em inteligência artificial (IA) implementado no Telegram, com o objetivo de oferecer um ambiente acessível e eficiente para o esclarecimento de dúvidas.
+
+O chatbot foi desenvolvido utilizando modelos de aprendizado de máquina (ML) baseados em Large Language Models (LLMs), ajustados para fornecer respostas precisas e restritas ao contexto de matemática para o ensino fundamental.
+
+## Funcionalidades
+
+- **Esclarecimento de dúvidas**: Respostas rápidas e precisas sobre conteúdos de matemática.
+- **Restrição de contexto**: Interações limitadas ao conteúdo de matemática do ensino fundamental.
+- **Armazenamento de informações**: Registra dados do usuário, como matrícula, nome, turma e professor.
+- **Validação de entradas**: Identifica e responde a entradas válidas e inválidas, como matrículas incorretas.
+
+## Tecnologias Utilizadas
+
+- **Linguagem de Programação**: Python
+- **Framework de IA**: IA Gemini 1.5 Flash
+- **Plataforma de Comunicação**: Telegram
+- **Modelo de Machine Learning**: Large Language Model (LLM)
+
+## Testes
+
+Foram realizados testes para verificar:
+
+1. **Assertividade das respostas geradas**: O chatbot apresentou respostas precisas para dúvidas relacionadas ao conteúdo definido.
+2. **Comportamento fora do contexto**: Em solicitações fora do escopo, o chatbot gerou respostas padrão explicativas.
+3. **Validação de entradas**: Matrículas inválidas foram corretamente identificadas e tratadas.
+
+## Resultados
+
+- **Assertividade**: O chatbot gerou respostas precisas para dúvidas relacionadas ao conteúdo definido.
+- **Validação de contexto**: Respostas fora do escopo retornaram mensagens padrão.
+- **Funcionalidade**: O sistema demonstrou ser uma ferramenta prática e acessível para alunos do ensino fundamental.
+
