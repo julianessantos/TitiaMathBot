@@ -10,12 +10,6 @@ load_dotenv()
 # Obtém a variável de ambiente 'APIKEY' para o Google Generative AI
 api_key = os.getenv('APIKEY')
 
-# Verifica se a chave da API foi carregada corretamente
-if not api_key:
-    print("Erro: a chave APIKEY não foi encontrada no arquivo .env")
-else:
-    print("API key do Google Generative AI carregada com sucesso")
-
 # Configura o modelo com a chave da API
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel('gemini-1.5-flash')
@@ -23,12 +17,19 @@ model = genai.GenerativeModel('gemini-1.5-flash')
 # Configuração do bot do Telegram
 API_KEY_TELEGRAM = os.getenv('TELEGRAMKEY')  # A chave de API do Telegram
 
+bot = telebot.TeleBot(API_KEY_TELEGRAM)
+
+
+# Verifica se a chave da API foi carregada corretamente
+if not api_key:
+    print("Erro: a chave APIKEY não foi encontrada no arquivo .env")
+else:
+    print("API key do Google Generative AI carregada com sucesso")
+
 if not API_KEY_TELEGRAM:
     print("Erro: a chave TELEGRAMKEY não foi encontrada no arquivo .env")
 else:
     print("Chave do Telegram carregada com sucesso")
-
-bot = telebot.TeleBot(API_KEY_TELEGRAM)
 
 # Histórico de usuários
 user_history = {}
@@ -75,6 +76,12 @@ def verify_matricula(message):
     chat_id = message.chat.id
     matricula = message.text.strip()
 
+     # 🚨 Verificação do tamanho da matrícula (exatamente 8 dígitos)
+    if not matricula.isdigit() or len(matricula) != 8:
+        msg = bot.reply_to(message, "Matrícula inválida! Ela deve conter exatamente 8 dígitos numéricos. Tente novamente:")
+        bot.register_next_step_handler(msg, verify_matricula)  # Solicita novamente
+        return
+    
     if matricula in user_history:
         user_data = user_history[matricula]
         bot.reply_to(message, f"Bem-vindo de volta, {user_data['nome']}! Como posso ajudá-lo hoje?")
